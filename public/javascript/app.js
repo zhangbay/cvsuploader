@@ -1,0 +1,1 @@
+angular.module('cvsuploader', ['ngRoute', 'angularRoutes', 'MainController','AddExamController','EditExamController','DeleteExamController'])
