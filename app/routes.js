@@ -8,6 +8,24 @@ module.exports= function(app){
 		app.get('/', function(req,res){
 			res.sendfile('./public/views/index.html');// load our public/index.html file
 		});
+
+		app.get('/viewExam', function(req,res){
+			res.sendfile('./public/views/index.html');
+		});
+
+		app.get('/deleteExam', function(req,res){
+			res.sendfile('./public/views/index.html');
+		});
+
+
+		app.get('/editExam', function(req,res){
+			res.sendfile('./public/views/index.html');
+		});
+
+
+		app.get('/addExam', function(req,res){
+			res.sendfile('./public/views/index.html');
+		});
 //============= Main exam route handlers ===================
 
 		app.get('/api/exam', function(req,res){

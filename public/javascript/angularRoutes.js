@@ -6,6 +6,11 @@ angular.module('angularRoutes', []).config(['$routeProvider', '$locationProvider
             controller: 'MainController'
         })
 
+        .when('/viewExam',{
+            templateUrl: 'views/viewexam.html',
+            controller: 'ViewExamController'
+        })
+
         .when('/addExam',{
         	templateUrl: 'views/addexam.html',
         	controller: 'AddExamController'
@@ -19,6 +24,11 @@ angular.module('angularRoutes', []).config(['$routeProvider', '$locationProvider
         .when('/editExam',{
         	templateUrl: 'views/editexam.html',
         	controller: 'EditExamController'
+        })
+
+        .when('/viewExam',{
+            templateUrl: 'views/viewexam.html',
+            controller: 'ViewExamController'
         })
 
 		.otherwise({

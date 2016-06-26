@@ -6,9 +6,9 @@
   	<div class="col-lg-6 col-md-offset-3">
     	<div class="input-group input-group-lg">
     		<span class="input-group-addon" id="basic-addon1">Find Exam:</span>
-     		 <input type="text" class="form-control" placeholder="Search for Exam by ID...">
+     		 <input type="text" class="form-control" placeholder="Search for Exam by ID..." ng-model="formData.text">
       		<span class="input-group-btn">
-      	  <button class="btn btn-default" type="button">Go!</button>
+      	  <button class="btn btn-default" type="button" ng-click="queryExam()">Go!</button>
       	</span>
     	</div><!-- /input-group -->
   	</div><!-- /.col-lg-6 -->

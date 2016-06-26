@@ -3,9 +3,12 @@
 <head>
 	<title>AceApp Exam Question Uploads</title>
 	 <link rel="stylesheet" href="libs/bower_components/bootstrap/dist/css/bootstrap.min.css">
+
     <link rel="stylesheet" href="css/style.css"> <!--custom styles -->
 
     <!-- JS -->
+    <script src="libs/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="libs/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="libs/bower_components/angular/angular.min.js"></script>
     <script src="libs/bower_components/angular-route/angular-route.min.js"></script>
 
@@ -13,9 +16,10 @@
     <script src="javascript/controllers/AddExamController.js"></script>
     <script src="javascript/controllers/EditExamController.js"></script>
     <script src="javascript/controllers/DeleteExamController.js"></script>
+    <script src="javascript/controllers/ViewExamController.js"></script>
     <script src="javascript/app.js"></script>
     <script src="javascript/angularRoutes.js"></script>
-    
+    <script src="javascript/services/ExamServices.js"></script>
     <meta charset="UTF-8">
     <base href="/">
 </head>
@@ -24,9 +28,10 @@
 		 <nav class="navbar-header  navbar-right">
             	<ul class="nav navbar-nav navbar-right" >
   					<li><a class="navbar-brand" href="/">Home</a></li>
-  					<li><a class="navbar-brand" href="/addExam">Add Exam</a></li>
-  					<li><a class="navbar-brand" href="/editExam">Edit Exam</a></li>
-  					<li><a class="navbar-brand" href="/deleteExam">Delete Exam</a></li>
+            <li><a class="navbar-brand" href="/viewExam">Repository</a></li>
+  					<li><a class="navbar-brand" href="/addExam">Add</a></li>
+  					<li><a class="navbar-brand" href="/editExam">Edit</a></li>
+  					<li><a class="navbar-brand" href="/deleteExam">Delete</a></li>
 				</ul>
         </nav>
         </div>
