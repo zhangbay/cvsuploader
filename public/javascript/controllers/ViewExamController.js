@@ -1,5 +1,10 @@
 angular.module('ViewExamController', []).controller('ViewExamController', function($scope,ExamServices){
-	$scope.examId = ExamServices.get().text;
+	$scope.examId   = null;
+	$scope.select;
+
+	if (ExamServices.get() != undefined || ExamServices.get() != null) {
+		$scope.examId =ExamServices.get();
+	}
 
 	ExamServices.getAllExams()
 		.success(function(data){
@@ -18,4 +23,9 @@ angular.module('ViewExamController', []).controller('ViewExamController', functi
 		.error(function(data){
 			console.log('Error: '+data);
 		});
+
+	$scope.updateID = function(){
+		$scope.examId = $scope.select;
+		console.log($scope.examId);
+	}
 });
