@@ -24,7 +24,10 @@ angular.module('ExamServices',[]).factory('ExamServices', function($http){
 
 		deleteExam: function(examid){
 			return $http.delete('/api/exam/'+examid);
-		}
+		},
 
+		addQuestion: function(examid, data){
+			return $http.post('/api/exam/'+examid+'/questions',data);
+		}
 	}
 });

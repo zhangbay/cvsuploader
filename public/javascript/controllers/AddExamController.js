@@ -8,7 +8,7 @@ angular.module('AddExamController', []).controller('AddExamController', function
 						$scope.exam = {};
 						console.log(data);
 					})
-					.err(function(data){
+					.error(function(data){
 						console.log('Error: '+ data);
 					});
 	}

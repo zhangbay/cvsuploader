@@ -1,6 +1,6 @@
 angular.module('ViewExamController', []).controller('ViewExamController', function($scope,ExamServices){
 	$scope.examId   = null;
-	$scope.select;
+	$scope.selected = false;
 
 	if (ExamServices.get() != undefined || ExamServices.get() != null) {
 		$scope.examId =ExamServices.get();
@@ -15,17 +15,25 @@ angular.module('ViewExamController', []).controller('ViewExamController', functi
 			console.log('Error: '+data);
 		});
 
-	ExamServices.getExam($scope.examId)
-		.success(function(data){
-			$scope.examInfo = data;
-			console.log(data);
-		})
-		.error(function(data){
-			console.log('Error: '+data);
-		});
 
 	$scope.updateID = function(){
-		$scope.examId = $scope.select;
-		console.log($scope.examId);
+		if ($scope.examId != null){
+			$scope.selected = true;
+
+			ExamServices.getExam($scope.examId)
+				.success(function(data){
+						$scope.examInfo = data;
+						if ($scope.examInfo.markAvg === -1){
+							$scope.average = "N/A";
+						}else{
+							$scope.average = $scope.examInfo.markAvg;
+						}
+						console.log(data);
+				})
+				.error(function(data){
+					console.log('Error: '+data);
+				});	
+		}
+		//console.log($scope.examId);
 	}
 });

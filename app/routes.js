@@ -1,6 +1,5 @@
 var Exam = require('./models/exam');
-
-
+var Question = require('./models/question');
 
 module.exports= function(app){
 		
@@ -41,7 +40,9 @@ module.exports= function(app){
     		});
 		});
 
-		app.post('/api/exam', function(req,res){
+		app.post('/api/exam', function(req,res,next){
+
+			console.log(req.body);
 
 			var exam = new Exam(req.body);
 			
@@ -62,13 +63,13 @@ module.exports= function(app){
 		});
 //============= Id exam route handers =====================
 		app.get('/api/exam/:exam_id', function(req,res){
-			Exam.findById(req.params.exam_id, function(err,exam){
-				if(err){
-					res.send(err);
-				}
-				console.log("Get Exam "+req.params.exam_id+".");
-				res.json(exam);
-			});
+			req.exam.populate('questions', function(err, exam) {
+    		if (err) { 
+    			return next(err); 
+    		}
+
+    			res.json(exam);
+  			});
 		});
 
 		app.put('/api/exam/:exam_id', function(req,res){
@@ -76,11 +77,22 @@ module.exports= function(app){
 				if(err){
 					res.send(err);
 				}
-
-				exam.name = req.body.name;
-				exam.complete = req.body.complete;
-				exam.time = req.body.time; //epoch time
-				exam.submitter= req.body.submitter;
+				if(req.body.status){
+					exam.status = req.body.status;
+				}
+				if(req.body.markAvg){
+					exam.markAvg = req.body.markAvg;
+				}
+				if(req.body.complete){
+					exam.complete = req.body.complete;
+				}
+				if(req.body.time){
+					exam.time = req.body.time; //epoch time
+				}
+				if(req.body.submitter){
+					exam.submitter= req.body.submitter;
+				}
+				
 
 				exam.save(function (err){
 					if(err){
@@ -101,6 +113,49 @@ module.exports= function(app){
 				}
 				console.log("Exam "+req.params.exam_id+" removed.");
 				res.json(exam);
+			});
+		});
+
+
+		app.param('exam_id', function(req,res,next,id){
+			var query = Exam.findById(id);
+
+			query.exec(function (err,exam){
+				if(err){
+					return next(err);
+				}
+						if(!exam){
+							return next(new Error('can\'t find exam'));
+						}
+						req.exam = exam;
+						next();
+				});
+		});
+
+
+		app.post('/api/exam/:exam_id/questions', function(req,res){
+			var question = new Question(req.body);
+			question.save(function(err, quest){
+				if(err){ return next(question); }
+				req.exam.questions.push(question);
+				req.exam.save(function(err, exam){
+					if(err){
+						return next(err);
+					}
+
+					res.json(question);
+				});
+    				
+			})
+		});
+
+		app.get('/api/exam/:exam_id/questions/:question_id',function(req,res,next){
+			Question.findById(req.params.question_id, function(err, question){
+					if(err){
+						res.send(err);
+					}
+					console.log("Get Question "+req.params.question_id+" From Exam "+req.params.exam_id+".");
+					res.json(question);
 			});
 		});
 };

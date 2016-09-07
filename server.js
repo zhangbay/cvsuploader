@@ -5,6 +5,7 @@ var methodOverride = require('method-override');
 var mongoose = require('mongoose');
 var db = require('./config/db');
 var morgan = require('morgan');
+var router = express.Router();
 // config files
 
 var port = process.env.PORT || 4444;
@@ -27,6 +28,7 @@ app.use(express.static(__dirname + '/public' ));
 
 app.use(morgan('dev'));
 // routes ==================================================
+
 require('./app/routes')(app);
 // start app ===============================================
 // startup our app at http://localhost:4444

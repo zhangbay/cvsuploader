@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<title>AceApp Exam Question Uploads</title>
-	 <link rel="stylesheet" href="libs/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <title>AceApp Exam Question Uploads</title>
+   <link rel="stylesheet" href="libs/bower_components/bootstrap/dist/css/bootstrap.min.css">
 
     <link rel="stylesheet" href="css/style.css"> <!--custom styles -->
 
@@ -11,7 +11,7 @@
     <script src="libs/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="libs/bower_components/angular/angular.min.js"></script>
     <script src="libs/bower_components/angular-route/angular-route.min.js"></script>
-
+    <script src="lodash.js"></script>
     <script src="javascript/controllers/MainController.js"></script>
     <script src="javascript/controllers/AddExamController.js"></script>
     <script src="javascript/controllers/EditExamController.js"></script>
@@ -24,18 +24,18 @@
     <base href="/">
 </head>
 <body ng-app="cvsuploader" ng-controller="MainController">
-		<div class="container-fluid">
-		 <nav class="navbar-header  navbar-right">
-            	<ul class="nav navbar-nav navbar-right" >
-  					<li><a class="navbar-brand" href="/">Home</a></li>
+    <div class="container-fluid">
+     <nav class="navbar-header  navbar-right">
+              <ul class="nav navbar-nav navbar-right" >
+            <li><a class="navbar-brand" href="/">Home</a></li>
             <li><a class="navbar-brand" href="/viewExam">Repository</a></li>
-  					<li><a class="navbar-brand" href="/addExam">Add</a></li>
-  					<li><a class="navbar-brand" href="/editExam">Edit</a></li>
-  					<li><a class="navbar-brand" href="/deleteExam">Delete</a></li>
-				</ul>
-        </nav>
-        </div>
-		<div ng-view></div>
+            <li><a class="navbar-brand" href="/addExam">Add</a></li>
+            <li><a class="navbar-brand" href="/editExam">Edit</a></li>
+            <li><a class="navbar-brand" href="/deleteExam">Delete</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div ng-view></div>
 </body>
 <footer class="footer">
       <div class="container">
